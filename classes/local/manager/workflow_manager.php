@@ -70,6 +70,7 @@ class workflow_manager {
         if ($hard || self::is_removable($workflowid)) {
             trigger_manager::remove_instances_of_workflow($workflowid);
             step_manager::remove_instances_of_workflow($workflowid);
+            self::remove_from_sortindex($workflow);
             $DB->delete_records('tool_lifecycle_workflow', ['id' => $workflowid]);
         }
     }
